@@ -1,0 +1,14 @@
+#!/bin/bash  
+date=$(date)  #stores the system date in date variable
+a=$(/etc/init.d/hylafax status | awk 'NR==2{print $9}')  #stores the output of command in variable a i.e. in my case i am checking the status of service hylafax and from AWK i am getting the required string i want to compare
+c="$a"  # storing string in another variable optional
+b="running..." # input string to compare with
+if [ "$c" = "$b" ]  # this if statement compares the string we got from service status with input strings and decides on base of that
+then  # do nothing if strings are equal
+ echo "faxq is running"  
+ echo "Faxq is running and date/time is $date" >> /root/hylafaxlogs.txt    #just for the logs
+else
+ echo "Faxq is NOT running and date/time is $date" >> /root/hylafaxlogs.txt # just for logs
+/etc/init.d/hylafax restart  #restart service if service was not running
+ echo -e "Faxq was stopped so i restarted it date/time is $date"  | mail -s "Hylafax Restarted" -c "xyz@xyz.com" ngn@nayatel.com,xyz@xyz.com
+fi
