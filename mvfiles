@@ -1,0 +1,20 @@
+#this bash script will move the files from 1 directory to other 
+#iteration on akk the files that exist in the directory /var/spool/asterisk/monitor/
+for file in `ls /var/spool/asterisk/monitor/`
+do
+#file should not be lost+found as it is system file/dir
+        if [ $file != "lost+found" ]
+        then
+        #filter to skip these files
+                if [ $(echo `expr match "$file" .*\in.wav`) = "0" ]
+                then
+                  #filter to skip these files
+                        if [ $(echo `expr match "$file" .*\out.wav`) = "0" ]
+                        then
+                                echo $file
+                                mv /var/spool/asterisk/monitor/$file /recording/intermediate
+                        fi
+                fi
+
+        fi
+done
