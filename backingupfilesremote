@@ -1,5 +1,7 @@
 #!/bin/bash
 #sshpass is the utility that is used to ssh a machine without password i.e. password will be passed with the shell command.
+#path of sshpass trigger can be different in each case run command : (find / -name sshpass) to find your path 
+#sshpass can be downloaded from link : https://slackbuilds.org/repository/14.0/network/sshpass/ 
 /usr/local/bin/sshpass -p "password" scp -r pathofdirectorytobebackedup sshusername@remoteip:destinationpath
 #this one liner can send the directory of one machine to other can be used for syncing the servers and backing up the data.
 #similary if it is cluster network and data is to be backed up to a central storage then each machine can run a cron and specify the date on which the data is to be backed up
