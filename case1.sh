@@ -7,3 +7,6 @@ case "$x" in
 	    echo "service was not running so i restarted"
 	    echo "a slight change has been made"
 esac
+
+
+#this file has been changed
